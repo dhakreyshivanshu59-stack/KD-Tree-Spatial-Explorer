@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KD-Tree Spatial Explorer</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <aside class="sidebar">
+            <header>
+                <h1>🌍 Spatial Explorer</h1>
+                <p>High-Performance KD-Tree Visualizer</p>
+            </header>
+
+            <section class="controls glass">
+                <div class="control-group">
+                    <h3>⚡ Query Mode</h3>
+                    <div class="tabs">
+                        <button class="tab-btn active" data-mode="all">All Points</button>
+                        <button class="tab-btn" data-mode="range">Range</button>
+                        <button class="tab-btn" data-mode="nearest">Nearest</button>
+                    </div>
+                </div>
+
+                <div id="range-inputs" class="control-group hidden">
+                    <h3>📏 Range Bounds</h3>
+                    <div class="input-grid">
+                        <input type="number" id="minLng" placeholder="Min Lng" step="0.0001">
+                        <input type="number" id="minLat" placeholder="Min Lat" step="0.0001">
+                        <input type="number" id="maxLng" placeholder="Max Lng" step="0.0001">
+                        <input type="number" id="maxLat" placeholder="Max Lat" step="0.0001">
+                    </div>
+                    <button id="run-range" class="primary-btn">Execute Range Search</button>
+                </div>
+
+                <div id="nearest-inputs" class="control-group hidden">
+                    <h3>📍 Target Point</h3>
+                    <p class="hint">Click on the map to set target</p>
+                    <div class="input-grid">
+                        <input type="number" id="targetLng" placeholder="Lng" readonly>
+                        <input type="number" id="targetLat" placeholder="Lat" readonly>
+                        <input type="number" id="limit" value="5" min="1" max="25">
+                    </div>
+                    <button id="run-nearest" class="primary-btn">Find Neighbors</button>
+                </div>
+
+                <div class="stats glass">
+                    <div class="stat-item">
+                        <span class="label">Total Points</span>
+                        <span id="total-count" class="value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="label">Query Time</span>
+                        <span id="query-time" class="value">0ms</span>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="glass">
+                <button id="rebuild-btn" class="secondary-btn">🔄 Rebuild KD-Tree</button>
+            </footer>
+        </aside>
+
+        <main id="map-container">
+            <div id="map"></div>
+            <div id="map-overlay" class="hidden">
+                 <div class="loader"></div>
+                 <p>Processing Query...</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
