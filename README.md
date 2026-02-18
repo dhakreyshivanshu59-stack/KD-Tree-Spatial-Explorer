@@ -89,6 +89,7 @@ Built with **Node.js**, **Express**, **MongoDB**, and **Unix-style coordinate ha
 | Command | Description |
 |---|---|
 | `npm start` | Start the Express server and build the KD-tree. |
+| `npm run dev` | Start the server in development mode (auto-restart with nodemon). |
 | `npm run seed` | Seed the database with sample New York locations. |
 | `npm run seed:india` | Seed the database with sample India locations. |
 | `npm test` | Run the test suite. |
@@ -100,6 +101,8 @@ Built with **Node.js**, **Express**, **MongoDB**, and **Unix-style coordinate ha
 To start the server and build the in-memory spatial index:
 ```bash
 npm start
+# OR for development (auto-restarts on file changes)
+npm run dev
 ```
 
 On startup, the system will:
